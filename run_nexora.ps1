@@ -16,7 +16,7 @@ Start-Process cmd.exe -ArgumentList "/k cd /d `"$root\backend`" && java -jar tar
 Start-Sleep -Seconds 4
 
 Write-Host "[2/3] Starting React 18 Frontend (Port 5173)..." -ForegroundColor Yellow
-Start-Process cmd.exe -ArgumentList "/k cd /d `"$root`" && npm run dev -- --host 127.0.0.1 --port 5173"
+Start-Process cmd.exe -ArgumentList "/k cd /d `"$root\frontend`" && npm run dev -- --host 127.0.0.1 --port 5173"
 
 Start-Sleep -Seconds 2
 

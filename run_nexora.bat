@@ -26,7 +26,7 @@ timeout /t 5 /nobreak >nul
 
 echo.
 echo [3/3] Starting React Frontend (Port 5173)...
-start "NEXORA Frontend (React 18 + Vite)" cmd /k "cd /d "%~dp0" && npm run dev -- --host 127.0.0.1 --port 5173"
+start "NEXORA Frontend (React 18 + Vite)" cmd /k "cd /d "%~dp0frontend" && npm run dev -- --host 127.0.0.1 --port 5173"
 
 echo.
 echo ======================================================================
