@@ -2,7 +2,8 @@
  * Centralized typed API client for NEXORA frontend
  * Connects to Spring Boot REST backend on http://localhost:8080/api
  */
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+const rawBase = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api').trim().replace(/\/+$/, '');
+export const API_BASE_URL = rawBase.endsWith('/api') ? rawBase : `${rawBase}/api`;
 export const DATA_MODE = import.meta.env.VITE_DATA_MODE || 'live';
 export class ApiError extends Error {
     status;
@@ -21,7 +22,7 @@ export async function apiRequest(endpoint, options = {}) {
         Accept: 'application/json',
         ...(options.headers || {}),
     };
-    if (token) {
+    if (token && !endpoint.includes('/auth/login') && !endpoint.includes('/auth/register')) {
         headers['Authorization'] = `Bearer ${token}`;
     }
     const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;

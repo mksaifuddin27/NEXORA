@@ -51,10 +51,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Public Health & System Info
-                        .requestMatchers("/api/health", "/actuator/**").permitAll()
+                        .requestMatchers("/api/health", "/health", "/actuator/**").permitAll()
 
                         // Public Authentication
-                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/register", "/api/auth/login", "/auth/register", "/auth/login").permitAll()
 
                         // Public Discovery Endpoints
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
